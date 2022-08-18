@@ -29,7 +29,6 @@ message VersionRequest {
   string version = 1;
 }
 
-// The response message containing the greetings
 message VersionReply {
   string message = 1;
 }
