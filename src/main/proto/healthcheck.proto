@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package io.grpc.healthcheck;
+
+option java_multiple_files = true;
+
+service Health {
+  rpc Check(HealthCheckRequest) returns (HealthCheckResponse) {}
+
+  rpc Watch (HealthCheckRequest) returns (stream HealthCheckResponse) {}
+
+  rpc GetVersion (VersionRequest) returns (VersionReply) {}
+
+}
+
+message HealthCheckRequest {
+  string service = 1;
+}
+
+message HealthCheckResponse {
+    string message = 1;
+    enum ServingStatus {
+      NOT_SERVING = 0;
+      SERVING = 1;
+    }
+}
+
+message VersionRequest {
+  string version = 1;
+}
+
+// The response message containing the greetings
+message VersionReply {
+  string message = 1;
+}
